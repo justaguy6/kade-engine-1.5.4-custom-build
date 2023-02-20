@@ -163,7 +163,7 @@ class WebmHandler
 	{
 		webm.visible = true;
 	}
-	#else
+	#elseif desktop 
 	public var webm:Sprite;
 	public function new()
 	{
