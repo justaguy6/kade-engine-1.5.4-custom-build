@@ -1,4 +1,4 @@
-package;
+package Video;
 
 import openfl.Lib;
 
