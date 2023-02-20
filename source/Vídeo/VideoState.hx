@@ -1,4 +1,4 @@
-package;
+package Video;
 
 import flixel.FlxState;
 import flixel.FlxG;
