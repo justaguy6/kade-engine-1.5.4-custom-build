@@ -2,7 +2,7 @@ package;
 
 import flixel.FlxG;
 import openfl.display.Sprite;
-#if (desktop && android
+#if (desktop && android)
 import webm.*;
 #end
 
