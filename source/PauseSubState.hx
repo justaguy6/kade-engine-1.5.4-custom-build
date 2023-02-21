@@ -7,6 +7,7 @@ import llua.Lua;
 #end
 import Controls.Control;
 import flixel.FlxG;
+import video.*;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
@@ -143,7 +144,7 @@ class PauseSubState extends MusicBeatSubstate
 			changeSelection(1);
 		}
 		
-		#if cpp
+		#if desktop
 			else if (leftP)
 			{
 				oldOffset = PlayState.songOffset;
