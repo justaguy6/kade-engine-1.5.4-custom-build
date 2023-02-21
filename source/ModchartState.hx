@@ -4,7 +4,7 @@
 import openfl.display3D.textures.VideoTexture;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
-#if windows
+#if cpp
 import flixel.tweens.FlxEase;
 import openfl.filters.ShaderFilter;
 import flixel.tweens.FlxTween;
@@ -297,7 +297,11 @@ class ModchartState
 			case 'philly-nice': songLowercase = 'philly';
 		}
 
+                #if desktop
 		var data:BitmapData = BitmapData.fromFile(Sys.getCwd() + "assets/data/" + songLowercase + '/' + spritePath + ".png");
+                #elseif android
+                var data:BitmapData = BitmapData.fromFile(SUtil.getStorageDirectory() + "assets/data/" + songLowercase + '/' + spritePath + ".png");
+                #end
 
 		var sprite:FlxSprite = new FlxSprite(0,0);
 		var imgWidth:Float = FlxG.width / data.width;
@@ -367,7 +371,7 @@ class ModchartState
 					case 'philly-nice': songLowercase = 'philly';
 				}
 
-				var result = LuaL.dofile(lua, Paths.lua(songLowercase + "/modchart")); // execute le file
+				var result = LuaL.dostring(lua, Paths.lua(songLowercase + "/modchart")); // execute le file
 	
 				if (result != 0)
 				{
