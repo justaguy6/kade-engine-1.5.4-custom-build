@@ -1,14 +1,14 @@
-package Video;
+package video;
 
 import flixel.FlxG;
 import openfl.display.Sprite;
-#if (desktop && android)
+#if sys
 import webm.*;
 #end
 
 class WebmHandler
 {
-	#if (desktop && android)
+	#if sys
 	public var webm:WebmPlayer;
 	public var vidPath:String = "";
 	public var io:WebmIo;
@@ -163,7 +163,7 @@ class WebmHandler
 	{
 		webm.visible = true;
 	}
-	#elseif desktop 
+	#elseif !sys 
 	public var webm:Sprite;
 	public function new()
 	{
