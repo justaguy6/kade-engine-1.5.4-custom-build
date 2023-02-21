@@ -327,6 +327,7 @@ class TitleState extends MusicBeatState
 	}
 
 	var transitioning:Bool = false;
+	var newTitle:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -341,7 +342,7 @@ class TitleState extends MusicBeatState
 
 		var pressedEnter:Bool = controls.ACCEPT;
 
-		#if android
+		#if mobile
 		for (touch in FlxG.touches.list)
 		{
 			if (touch.justPressed)
