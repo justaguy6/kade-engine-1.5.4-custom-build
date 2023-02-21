@@ -19,6 +19,10 @@ import Video.GlobalVideo;
 import Video.VideoHandler;
 #end
 	
+#if desktop
+import Discord.DiscordClient;
+#end	
+	
 //crash handler stuff
 #if CRASH_HANDLER
 import openfl.events.UncaughtErrorEvent;
