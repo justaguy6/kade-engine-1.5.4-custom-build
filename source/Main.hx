@@ -2,7 +2,7 @@ package;
 
 import openfl.display.BlendMode;
 import openfl.text.TextFormat;
-import openfl.display.Application;
+import lime.app.Application;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -30,6 +30,8 @@ import sys.FileSystem;
 import sys.io.File;
 import sys.io.Process;
 #end	
+
+using StringTools;
 class Main extends Sprite
 {
 	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
@@ -115,7 +117,7 @@ class Main extends Sprite
 		vHandler.init2();
 		GlobalVideo.setVid(vHandler);
 		vHandler.source(ourSource);
-		#elseif cpp
+		#elseif sys
 		var str1:String = "WEBM SHIT"; 
 		var webmHandle = new WebmHandler();
 		webmHandle.source(ourSource);
