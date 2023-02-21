@@ -2,6 +2,8 @@ package;
 
 #if sys
 import smTools.SMFile;
+import sys.FileSystem;
+import sys.io.File;
 #end
 import flixel.FlxG;
 import flixel.FlxSprite;
