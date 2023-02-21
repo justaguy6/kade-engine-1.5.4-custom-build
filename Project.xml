@@ -122,6 +122,7 @@
 	<haxelib name="polymod" if="desktop"/>
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="linc_luajit" />
+	<haxelib name="extension-androidtools" if="android" />
 
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
@@ -164,6 +165,22 @@
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
 	<!-- _________________________________ Custom _______________________________ -->
+
+	<!--Always enable Null Object Reference check-->
+	<haxedef name="HXCPP_CHECK_POINTER" />
+	<haxedef name="HXCPP_STACK_LINE" />
+	<haxedef name="HXCPP_STACK_TRACE" />
+
+	<section if="android">
+		<!--Target SDK-->
+		<config:android target-sdk-version="29" if="${lime <= 8.0.0}" />
+	</section>
+
+	<section if="ios">
+		<!--Dependency--> 
+		<dependency name="Metal.framework" />
+		<dependency name="WebKit.framework" />
+	</section>
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 	
