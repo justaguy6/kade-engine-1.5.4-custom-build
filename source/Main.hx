@@ -115,7 +115,7 @@ class Main extends Sprite
 		vHandler.init2();
 		GlobalVideo.setVid(vHandler);
 		vHandler.source(ourSource);
-		#elseif (desktop && android)
+		#elseif cpp
 		var str1:String = "WEBM SHIT"; 
 		var webmHandle = new WebmHandler();
 		webmHandle.source(ourSource);
@@ -125,7 +125,7 @@ class Main extends Sprite
 		GlobalVideo.setWebm(webmHandle);
 		#end
 
-		#if (desktop && android)
+		#if cpp
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
 		toggleFPS(FlxG.save.data.fps);
