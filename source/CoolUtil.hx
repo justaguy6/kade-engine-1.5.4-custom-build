@@ -1,6 +1,12 @@
 package;
 
-import lime.utils.Assets;
+import openfl.utils.Assets;
+#if sys
+import sys.io.File;
+import sys.FileSystem;
+#else
+import openfl.utils.Assets;
+#end
 
 using StringTools;
 
@@ -15,7 +21,12 @@ class CoolUtil
 
 	public static function coolTextFile(path:String):Array<String>
 	{
-		var daList:Array<String> = Assets.getText(path).trim().split('\n');
+		var daList:Array<String> = [];
+		#if sys
+		if(FileSystem.exists(SUtil.getStorageDirectory() + path)) daList = File.getContent(SUtil.getStorageDirectory() + path).trim().split('\n');
+		#else
+		if(Assets.exists(path)) daList = Assets.getText(path).trim().split('\n');
+		#end
 
 		for (i in 0...daList.length)
 		{
