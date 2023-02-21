@@ -1,6 +1,6 @@
 package;
 
-import Videos.*;
+import Video.*;
 import openfl.ui.KeyLocation;
 import openfl.events.Event;
 import haxe.EnumTools;
