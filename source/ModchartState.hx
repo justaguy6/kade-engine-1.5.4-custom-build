@@ -7,6 +7,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 #if cpp
 import flixel.tweens.FlxEase;
 import openfl.filters.ShaderFilter;
+import video.*;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import openfl.geom.Matrix;
