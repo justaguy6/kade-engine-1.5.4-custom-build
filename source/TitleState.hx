@@ -6,6 +6,8 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 import flixel.FlxG;
+import haxe.Json;
+import flixel.graphics.frames.FlxFrame;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.display.FlxGridOverlay;
