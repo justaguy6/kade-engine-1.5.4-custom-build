@@ -187,7 +187,14 @@ class Paths
 	}
 	inline static public function lua(key:String, ?library:String)
 	{
-		return getPath('$key.lua', TEXT, library);
+		#if MODS_ALLOWED
+		var file:String = modsLua(key);
+		if(FileSystem.exists(file)) {
+			return file;
+		}
+		#end
+
+		return getPath('data/$key.lua', TEXT, library);
 	}
 
 	static public function video(key:String)
@@ -413,6 +420,10 @@ class Paths
 
 	inline static public function modsJson(key:String) {
 		return modFolders('data/' + key + '.json');
+	}
+
+	inline static public function modsLua(key:String) {
+		return modFolders('data/' + key + '.lua');
 	}
 
 	inline static public function modsVideo(key:String) {
