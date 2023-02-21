@@ -14,7 +14,7 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import webm.*;
 //#if VIDEOS_ATIVADOS
-import Video.*;
+import video.*;
 //#end
 	
 #if desktop
