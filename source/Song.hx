@@ -16,7 +16,7 @@ typedef SwagSong =
 {
 	var song:String;
 	var notes:Array<SwagSection>;
-	var events:Array<Dynamic>;
+	//var events:Array<Dynamic>;
 	var bpm:Float;
 	var needsVoices:Bool;
 	var speed:Float;
@@ -35,7 +35,7 @@ class Song
 {
 	public var song:String;
 	public var notes:Array<SwagSection>;
-	public var events:Array<Dynamic>;
+	//public var events:Array<Dynamic>;
 	public var bpm:Float;
 	public var needsVoices:Bool = true;
 	public var arrowSkin:String;
@@ -54,7 +54,7 @@ class Song
 			songJson.player3 = null;
 		}
 
-		if(songJson.events == null)
+		/*if(songJson.events == null)
 		{
 			songJson.events = [];
 			for (secNum in 0...songJson.notes.length)
@@ -76,7 +76,7 @@ class Song
 					else i++;
 				}
 			}
-		}
+		}*/
 	}
 
 	public function new(song, notes, bpm)
@@ -101,7 +101,7 @@ class Song
 
 		if(rawJson == null) {
 			#if sys
-			rawJson = File.getContent(Paths.json(formattedFolder + '/' + formattedSong)).trim();
+			rawJson = File.getContent(SUtil.getStorageDirectory() + Paths.json(formattedFolder + '/' + formattedSong)).trim();
 			#else
 			rawJson = Assets.getText(Paths.json(formattedFolder + '/' + formattedSong)).trim();
 			#end
