@@ -1,5 +1,5 @@
 //This was made by GWebDev lol btw this uses actuate
-package Video;
+package video;
 
 import motion.Actuate;
 import openfl.display.Sprite;
