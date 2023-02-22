@@ -104,8 +104,10 @@ class Main extends Sprite
 
 		game = new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen);
 
+		#if mobile		   
 		SUtil.checkFiles();
-
+                #end
+			
 		addChild(game);
 
 		var ourSource:String = "assets/videos/DO NOT DELETE OR GAME WILL CRASH/dontDelete.webm";
@@ -169,8 +171,8 @@ class Main extends Sprite
 
 		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/justaguy6/kade-engine-1.5.4-custom-build\n\n> Crash Handler written by: sqirra-rng";
 
-		if (!FileSystem.exists(SUtil.getStorageDirectory() + "./crash/"))
-			FileSystem.createDirectory(SUtil.getStorageDirectory() + "./crash/");
+		if (!FileSystem.exists(#if mobile SUtil.getStorageDirectory() + #end "./crash/"))
+			FileSystem.createDirectory(#if mobile SUtil.getStorageDirectory() + #end "./crash/");
 
 		File.saveContent(path, errMsg + "\n");
 
