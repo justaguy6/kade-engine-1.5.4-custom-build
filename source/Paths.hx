@@ -187,13 +187,6 @@ class Paths
 	}
 	inline static public function lua(key:String, ?library:String)
 	{
-		#if MODS_ALLOWED
-		var file:String = modsLua(key);
-		if(FileSystem.exists(file)) {
-			return file;
-		}
-		#end
-
 		return getPath('data/$key.lua', TEXT, library);
 	}
 
