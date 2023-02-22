@@ -60,7 +60,7 @@ import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import haxe.Json;
-import openfl.utils.Assets;
+import lime.utils.Assets;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
@@ -239,7 +239,7 @@ class PlayState extends MusicBeatState
 
 	public static var highestCombo:Int = 0;
 
-        var executeModchart = null;
+	private var executeModchart = false;
 
 	// API stuff
 	
@@ -284,23 +284,13 @@ class PlayState extends MusicBeatState
 		}
 		
 		removedVideo = false;
-                #if MODS_ALLOWED
-                var executemodsModchart:String = Paths.modsLua(songLowercase  + "/modchart");
-                if(FileSystem.exists(executemodsModchart)) {
-                        executeModchart = FileSystem.exists(executemodsModchart);
-                }
-		#end
 
-                if(executeModchart == null) {
-		#if sys
+		#if cpp
 		executeModchart = FileSystem.exists(SUtil.getStorageDirectory() + Paths.lua(songLowercase  + "/modchart"));
-                #else
-                executeModchart = Assets.exists(Paths.lua(songLowercase  + "/modchart"));
 		if (executeModchart)
 			PlayStateChangeables.Optimize = false;
 		#end
-                }
-		#if !sys
+		#if !cpp
 		executeModchart = false; // FORCE disable for non cpp targets
 		#end
 
