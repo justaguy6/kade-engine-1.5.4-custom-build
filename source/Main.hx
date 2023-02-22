@@ -104,9 +104,7 @@ class Main extends Sprite
 
 		game = new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen);
 
-		#if mobile		   
 		SUtil.checkFiles();
-                #end
 			
 		addChild(game);
 
