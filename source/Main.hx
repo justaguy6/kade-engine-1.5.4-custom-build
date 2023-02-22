@@ -99,7 +99,7 @@ class Main extends Sprite
 		#if desktop 
                 initialState = Caching;
                 #elseif android
-                initialState = AboutState;
+                initialState = TitleState;
                 #end
 
 		game = new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen);
@@ -171,7 +171,7 @@ class Main extends Sprite
 
 		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/justaguy6/kade-engine-1.5.4-custom-build\n\n> Crash Handler written by: sqirra-rng";
 
-		if (!FileSystem.exists(#if mobile SUtil.getStorageDirectory() + #end "./crash/"))
+		if (!FileSystem.exists(SUtil.getStorageDirectory() + "./crash/"))
 			FileSystem.createDirectory(#if mobile SUtil.getStorageDirectory() + #end "./crash/");
 
 		File.saveContent(path, errMsg + "\n");
