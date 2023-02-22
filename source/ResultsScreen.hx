@@ -28,7 +28,7 @@ import flixel.input.FlxKeyManager;
 
 using StringTools;
 
-class ResultsScreen extends FlxSubState
+class ResultsScreen extends MusicBeatSubstate
 {
     public var background:FlxSprite;
     public var text:FlxText;
@@ -158,6 +158,11 @@ class ResultsScreen extends FlxSubState
         }});
 
         cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+        
+        #if mobile
+        addVirtualPad(NONE, A);
+        addVirtualPadCamera();
+        #end
 
 		super.create();
 	}
@@ -172,7 +177,7 @@ class ResultsScreen extends FlxSubState
 
         // keybinds
 
-        if (PlayerSettings.player1.controls.ACCEPT)
+        if (controls.ACCEPT)
         {
             music.fadeOut(0.3);
             

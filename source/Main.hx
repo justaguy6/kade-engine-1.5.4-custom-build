@@ -38,7 +38,7 @@ class Main extends Sprite
 	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
-	var framerate:Int = 120; // How many frames per second the game should run at.
+	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 	public static var webmHandle:WebmHandler = new WebmHandler();
@@ -154,7 +154,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = SUtil.getStorageDirectory() + "./crash/" + "PsychEngine_" + dateNow + ".txt";
+		path = SUtil.getStorageDirectory() + "./crash/" + "KadeEngine_" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{

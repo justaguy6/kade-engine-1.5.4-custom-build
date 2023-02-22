@@ -155,6 +155,10 @@ class FreeplayState extends MusicBeatState
         txt.screenCenter();
 		txt.y += 200;
         add(txt);
+        
+        #if mobile
+        addVirtualPad(LEFT_FULL, A_B_C);
+        #end
 
 		super.create();
 	}
@@ -196,8 +200,8 @@ class FreeplayState extends MusicBeatState
 		scoreText.text = "PERSONAL BEST:" + lerpScore;
 		comboText.text = combo + '\n';
 
-		var upP = FlxG.keys.justPressed.UP;
-		var downP = FlxG.keys.justPressed.DOWN;
+		var upP = controls.UP_P;
+		var downP = controls.DOWN_P;
 		var accepted = controls.ACCEPT;
 		var space = FlxG.keys.justPressed.SPACE;
 
@@ -232,12 +236,12 @@ class FreeplayState extends MusicBeatState
 			changeSelection(1);
 		}
 
-		if (FlxG.keys.justPressed.LEFT)
+		if (controls.LEFT_P)
 			changeDiff(-1);
-		if (FlxG.keys.justPressed.RIGHT)
+		if (controls.RIGHT_P)
 			changeDiff(1);
 
-		if (FlxG.keys.justPressed.P)
+		if (FlxG.keys.justPressed.P #if mobile || virtualPad.buttonC.justPressed #end)
 		{
 			FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
 		}

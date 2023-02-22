@@ -40,6 +40,10 @@ class AboutState extends MusicBeatState
 		add(bg);
 		add(logoBl);
 		add(text);
+		
+		#if mobile
+		addVirtualPad(NONE, A_B);
+		#end
 	}
 
     override function update(elapsed:Float)
