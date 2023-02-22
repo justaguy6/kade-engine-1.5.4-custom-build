@@ -376,7 +376,7 @@ class ModchartState
 
                                 #if MODS_ALLOWED
                                 var modsResult:String = Paths.modsLua(songLowercase + "/modchart");
-                                if(sys.FileSystem.exists(modsResult) {
+                                if(sys.FileSystem.exists(modsResult)) {
                                             result = LuaL.dostring(lua, sys.io.File.getContent(SUtil.getStorageDirectory() + modsResult)); // execute le file
                                 }
                                 #end
