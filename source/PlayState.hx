@@ -239,7 +239,7 @@ class PlayState extends MusicBeatState
 
 	public static var highestCombo:Int = 0;
 
-	private var executeModchart = null;
+        var executeModchart = null;
 
 	// API stuff
 	
