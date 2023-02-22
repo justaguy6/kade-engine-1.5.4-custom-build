@@ -2,6 +2,13 @@ package;
 
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+#if MODS_ALLOWED
+import sys.io.File;
+import sys.FileSystem;
+#end
+import openfl.utils.Assets;
+import haxe.Json;
+import haxe.format.JsonParser;
 
 class CharacterSetting
 {
@@ -10,6 +17,10 @@ class CharacterSetting
 	public var scale(default, null):Float;
 	public var flipped(default, null):Bool;
 
+	public var character:String;
+	public var hasConfirmAnimation:Bool = false;
+	private static var DEFAULT_CHARACTER:String = 'bf';
+	
 	public function new(x:Int = 0, y:Int = 0, scale:Float = 1.0, flipped:Bool = false)
 	{
 		this.x = x;
@@ -57,6 +68,32 @@ class MenuCharacter extends FlxSprite
 		updateHitbox();
 	}
 
+	var characterPath:String = 'images/menucharacters/' + character + '.json';
+        var rawJson = null;
+
+	#if MODS_ALLOWED
+	var path:String = Paths.modFolders(characterPath);
+	if (!FileSystem.exists(path)) {
+		path = Paths.getPreloadPath(characterPath);
+        }
+
+	if(!FileSystem.exists(path)) {
+		path = Paths.getPreloadPath('images/menucharacters/' + DEFAULT_CHARACTER + '.json');
+
+	rawJson = File.getContent(path);
+
+	#else
+	var path:String = Paths.getPreloadPath(characterPath);
+	if(!Assets.exists(path)) {
+          	path = Paths.getPreloadPath('images/menucharacters/' + DEFAULT_CHARACTER + '.json');
+	}
+	rawJson = Assets.getText(path);
+	#end
+		
+	var charFile:MenuCharacterFile = cast Json.parse(rawJson);
+	frames = Paths.getSparrowAtlas('menucharacters/' + charFile.image);
+	animation.addByPrefix('idle', charFile.idle_anim, 24);	
+		
 	public function setCharacter(character:String):Void
 	{
 		if (character == '')
