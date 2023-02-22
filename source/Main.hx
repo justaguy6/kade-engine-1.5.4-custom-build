@@ -99,7 +99,7 @@ class Main extends Sprite
 		#if desktop 
                 initialState = Caching;
                 #elseif android
-                initialState = TitleState;
+                initialState = AboutState;
                 #end
 
 		game = new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen);
@@ -154,7 +154,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = SUtil.getStorageDirectory() + "./crash/" + "KadeEngine_" + dateNow + ".txt";
+		path = #if mobile SUtil.getStorageDirectory() + #end "./crash/" + "KadeEngine_" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
