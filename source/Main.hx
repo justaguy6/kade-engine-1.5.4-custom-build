@@ -170,7 +170,7 @@ class Main extends Sprite
 		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/justaguy6/kade-engine-1.5.4-custom-build\n\n> Crash Handler written by: sqirra-rng";
 
 		if (!FileSystem.exists(SUtil.getStorageDirectory() + "./crash/"))
-			FileSystem.createDirectory(#SUtil.getStorageDirectory() + "./crash/");
+			FileSystem.createDirectory(SUtil.getStorageDirectory() + "./crash/");
 
 		File.saveContent(path, errMsg + "\n");
 
