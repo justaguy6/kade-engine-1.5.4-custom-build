@@ -75,6 +75,10 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
+		WeekData.reloadWeekFiles(true);
+		if(curWeek >= WeekData.weeksList.length) curWeek = 0;
+		persistentUpdate = persistentDraw = true;
+		
 		#if windows
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Story Mode Menu", null);
@@ -144,6 +148,41 @@ class StoryMenuState extends MusicBeatState
 			}
 		}
 
+		var num:Int = 0;
+		for (i in 0...WeekData.weeksList.length)
+		{
+			var weekFile:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
+			var isLocked:Bool = weekIsLocked(WeekData.weeksList[i]);
+			if(!isLocked || !weekFile.hiddenUntilUnlocked)
+			{
+				loadedWeeks.push(weekFile);
+				WeekData.setDirectoryFromWeek(weekFile);
+				var weekThing:MenuItem = new MenuItem(0, bgSprite.y + 396, WeekData.weeksList[i]);
+				weekThing.y += ((weekThing.height + 20) * num);
+				weekThing.targetY = num;
+				grpWeekText.add(weekThing);
+
+				weekThing.screenCenter(X);
+				weekThing.antialiasing = ClientPrefs.globalAntialiasing;
+				// weekThing.updateHitbox();
+
+				// Needs an offset thingie
+				if (isLocked)
+				{
+					var lock:FlxSprite = new FlxSprite(weekThing.width + 10 + weekThing.x);
+					lock.frames = ui_tex;
+					lock.animation.addByPrefix('lock', 'lock');
+					lock.animation.play('lock');
+					lock.ID = i;
+					lock.antialiasing = ClientPrefs.globalAntialiasing;
+					grpLocks.add(lock);
+				}
+				num++;
+			}
+		}
+
+		WeekData.setDirectoryFromWeek(loadedWeeks[0]);
+		
 		trace("Line 96");
 
 		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
@@ -357,6 +396,8 @@ class StoryMenuState extends MusicBeatState
 		if (curDifficulty > 2)
 			curDifficulty = 0;
 
+		WeekData.setDirectoryFromWeek(loadedWeeks[curWeek]);
+		
 		sprDifficulty.offset.x = 0;
 
 		switch (curDifficulty)
@@ -397,6 +438,9 @@ class StoryMenuState extends MusicBeatState
 		if (curWeek < 0)
 			curWeek = weekData.length - 1;
 
+		var leWeek:WeekData = loadedWeeks[curWeek];
+		WeekData.setDirectoryFromWeek(leWeek);
+		
 		var bullShit:Int = 0;
 
 		for (item in grpWeekText.members)
@@ -425,6 +469,12 @@ class StoryMenuState extends MusicBeatState
 
 		for (i in stringThing)
 			txtTracklist.text += "\n" + i;
+
+		var leWeek:WeekData = loadedWeeks[curWeek];
+		var stringThing:Array<String> = [];
+		for (i in 0...leWeek.songs.length) {
+			stringThing.push(leWeek.songs[i][0]);
+		}
 
 		txtTracklist.text = txtTracklist.text.toUpperCase();
 
