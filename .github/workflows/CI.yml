@@ -51,7 +51,8 @@ jobs:
           haxelib install flixel-addons 3.0.2
           haxelib install tjson
           haxelib install hxCodec
-          haxelib install hscript          
+          haxelib install hscript  
+          haxelib install actuate
           haxelib git extension-androidtools https://github.com/MaysLastPlay77/extension-androidtools
           haxelib git extension-androidtools https://github.com/Default-name123/oldtools.git
           haxelib list
