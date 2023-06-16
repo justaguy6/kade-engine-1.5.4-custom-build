@@ -58,7 +58,7 @@ class SUtil
 			if (!FileSystem.exists(SUtil.getStorageDirectory() + 'assets') && !FileSystem.exists(SUtil.getStorageDirectory() + 'mods'))
 			{
 				SUtil.applicationAlert('Uncaught Error :(!', "Whoops, seems you didn't extract the files from the .APK!\nPlease watch the tutorial by pressing OK.");
-				funkin.backend.utils.CoolUtil.browserLoad('https://youtu.be/zjvkTmdWvfU');
+				CoolUtil.browserLoad('https://youtu.be/zjvkTmdWvfU');
 				System.exit(0);
 			}
 			else
@@ -66,7 +66,7 @@ class SUtil
 				if (!FileSystem.exists(SUtil.getStorageDirectory() + 'assets'))
 				{
 					SUtil.applicationAlert('Uncaught Error :(!', "Whoops, seems you didn't extract the assets/assets folder from the .APK!\nPlease watch the tutorial by pressing OK.");
-					funkin.backend.utils.CoolUtil.browserLoad('https://youtu.be/zjvkTmdWvfU');
+					CoolUtil.browserLoad('https://youtu.be/zjvkTmdWvfU');
 					System.exit(0);
 				}
 
