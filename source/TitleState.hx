@@ -90,6 +90,12 @@ class TitleState extends MusicBeatState
 		
 		PlayerSettings.init();
 
+		FlxG.game.focusLostFramerate = 60;
+		FlxG.sound.muteKeys = muteKeys;
+		FlxG.sound.volumeDownKeys = volumeDownKeys;
+		FlxG.sound.volumeUpKeys = volumeUpKeys;
+		FlxG.keys.preventDefaultKeys = [TAB];
+
 		#if desktop 
 		DiscordClient.initialize();
 
