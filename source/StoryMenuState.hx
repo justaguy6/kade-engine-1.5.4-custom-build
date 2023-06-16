@@ -73,7 +73,7 @@ class StoryMenuState extends MusicBeatState
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
 
-	var loadedWeeks:Array<WeekData> = []
+	var loadedWeeks:Array<WeekData> = [];
 	    
 	override function create()
 	{
