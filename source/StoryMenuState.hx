@@ -73,6 +73,8 @@ class StoryMenuState extends MusicBeatState
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
 
+	var loadedWeeks:Array<WeekData> = []
+	    
 	override function create()
 	{
 		WeekData.reloadWeekFiles(true);
@@ -458,6 +460,11 @@ class StoryMenuState extends MusicBeatState
 		updateText();
 	}
 
+	function weekIsLocked(name:String):Bool {
+		var leWeek:WeekData = WeekData.weeksLoaded.get(name);
+		return (!leWeek.startUnlocked && leWeek.weekBefore.length > 0 && (!weekCompleted.exists(leWeek.weekBefore) || !weekCompleted.get(leWeek.weekBefore)));
+	}
+	
 	function updateText()
 	{
 		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
