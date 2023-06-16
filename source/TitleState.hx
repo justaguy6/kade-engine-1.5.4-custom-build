@@ -78,10 +78,7 @@ class TitleState extends MusicBeatState
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 		
-		#if desktop 
-		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
-			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
-		#elseif android
+		#if (android || desktop)
 		if (!sys.FileSystem.exists(SUtil.getStorageDirectory() + "/assets/replays"))
 			sys.FileSystem.createDirectory(SUtil.getStorageDirectory() + "/assets/replays");
 		#end
