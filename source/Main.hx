@@ -28,7 +28,6 @@ import haxe.CallStack;
 import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
-import sys.io.Process;
 #end	
 
 using StringTools;
@@ -154,7 +153,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = SUtil.getStorageDirectory() + "./crash/" + "KadeEngine_" + dateNow + ".txt";
+		path = SUtil.getStorageDirectory() + "crash/" + "KadeEngine_" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
@@ -169,8 +168,8 @@ class Main extends Sprite
 
 		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/justaguy6/kade-engine-1.5.4-custom-build\n\n> Crash Handler written by: sqirra-rng";
 
-		if (!FileSystem.exists(SUtil.getStorageDirectory() + "./crash/"))
-			FileSystem.createDirectory(SUtil.getStorageDirectory() + "./crash/");
+		if (!FileSystem.exists(SUtil.getStorageDirectory() + "crash/"))
+			FileSystem.createDirectory(SUtil.getStorageDirectory() + "crash/");
 
 		File.saveContent(path, errMsg + "\n");
 
