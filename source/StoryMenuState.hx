@@ -22,6 +22,8 @@ using StringTools;
 
 class StoryMenuState extends MusicBeatState
 {
+	public static var weekCompleted:Map<String, Bool> = new Map<String, Bool>();
+	
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
@@ -61,6 +63,8 @@ class StoryMenuState extends MusicBeatState
 
 	var curWeek:Int = 0;
 
+	var bgSprite:FlxSprite;
+	
 	var txtTracklist:FlxText;
 
 	var grpWeekText:FlxTypedGroup<MenuItem>;
