@@ -2,6 +2,7 @@ package;
 
 import openfl.utils.Assets;
 import flixel.FlxG;
+import flixel.util.FlxSave;
 #if sys
 import sys.io.File;
 import sys.FileSystem;
