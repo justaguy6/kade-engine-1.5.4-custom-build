@@ -64,7 +64,7 @@ import lime.utils.Assets;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
-
+import StageData;
 #if windows
 import Discord.DiscordClient;
 #end
@@ -379,6 +379,49 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 		}
+		
+                var stageData:StageFile = StageData.getStageFile(curStage);
+		if(stageData == null) { //Stage couldn't be found, create a dummy stage for preventing a crash
+			stageData = {
+				directory: "",
+				defaultZoom: 0.9,
+				isPixelStage: false,
+
+				boyfriend: [770, 100],
+				girlfriend: [400, 130],
+				opponent: [100, 100],
+				hide_girlfriend: false,
+
+				camera_boyfriend: [0, 0],
+				camera_opponent: [0, 0],
+				camera_girlfriend: [0, 0],
+				camera_speed: 1
+			};
+		}
+
+		defaultCamZoom = stageData.defaultZoom;
+		isPixelStage = stageData.isPixelStage;
+		BF_X = stageData.boyfriend[0];
+		BF_Y = stageData.boyfriend[1];
+		GF_X = stageData.girlfriend[0];
+		GF_Y = stageData.girlfriend[1];
+		DAD_X = stageData.opponent[0];
+		DAD_Y = stageData.opponent[1];
+
+		if(stageData.camera_speed != null)
+			cameraSpeed = stageData.camera_speed;
+
+		boyfriendCameraOffset = stageData.camera_boyfriend;
+		if(boyfriendCameraOffset == null) //Fucks sake should have done it since the start :rolling_eyes:
+			boyfriendCameraOffset = [0, 0];
+
+		opponentCameraOffset = stageData.camera_opponent;
+		if(opponentCameraOffset == null)
+			opponentCameraOffset = [0, 0];
+
+		girlfriendCameraOffset = stageData.camera_girlfriend;
+		if(girlfriendCameraOffset == null)
+			girlfriendCameraOffset = [0, 0];
 
 		//defaults if no stage was found in chart
 		var stageCheck:String = 'stage';
